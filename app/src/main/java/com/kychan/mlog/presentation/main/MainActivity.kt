@@ -31,38 +31,45 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setView() {
-        val studyTabList = resources.getStringArray(R.array.home_tab)
-        studyTabList.forEach { title ->
-            binding.bottomTab.addTab(binding.bottomTab.newTab().setText(title))
+        with(binding) {
+            val studyTabList = resources.getStringArray(R.array.home_tab)
+            studyTabList.forEach { title ->
+                bottomTab.addTab(bottomTab.newTab().setText(title))
+            }
+
+            bottomTab.run {
+                addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                    override fun onTabSelected(tab: TabLayout.Tab?) {
+                        tab ?: return
+                        val findFragment = supportFragmentManager.findFragmentByTag("${tab.text}")
+                        if (findFragment == null) {
+                            supportFragmentManager.beginTransaction()
+                                .add(R.id.home_frg_container, getFragment(tab.position), "${tab.text}").commit()
+                        } else {
+                            supportFragmentManager.beginTransaction()
+                                .show(findFragment)
+                                .commit()
+                        }
+                    }
+
+                    override fun onTabUnselected(tab: TabLayout.Tab?) {
+                        tab ?: return
+                        val hideFragment = supportFragmentManager.findFragmentByTag("${tab.text}")
+                        if (hideFragment != null) {
+                            supportFragmentManager.beginTransaction()
+                                .hide(hideFragment)
+                                .commit()
+                        }
+                    }
+
+                    override fun onTabReselected(tab: TabLayout.Tab?) {
+                    }
+                })
+
+                getTabAt(0)?.setIcon(R.drawable.ic_home)
+                getTabAt(1)?.setIcon(R.drawable.ic_person)
+            }
         }
-
-        binding.bottomTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                tab ?: return
-                val findFragment = supportFragmentManager.findFragmentByTag("${tab.text}")
-                if (findFragment == null) {
-                    supportFragmentManager.beginTransaction()
-                        .add(R.id.home_frg_container, getFragment(tab.position), "${tab.text}").commit()
-                } else {
-                    supportFragmentManager.beginTransaction()
-                        .show(findFragment)
-                        .commit()
-                }
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                tab ?: return
-                val hideFragment = supportFragmentManager.findFragmentByTag("${tab.text}")
-                if (hideFragment != null) {
-                    supportFragmentManager.beginTransaction()
-                        .hide(hideFragment)
-                        .commit()
-                }
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
-        })
     }
 
     private fun getFragment(position: Int): Fragment {
