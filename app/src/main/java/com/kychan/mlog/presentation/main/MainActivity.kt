@@ -28,6 +28,22 @@ class MainActivity : AppCompatActivity() {
             .commit()
 
         setView()
+        setToolbar(0)
+    }
+
+    private fun setToolbar(position: Int) {
+        supportActionBar?.run {
+            when (position) {
+                0 -> {
+                    setDisplayShowCustomEnabled(true)
+                    setCustomView(R.layout.view_search)
+                }
+                1 -> {
+                    setDisplayShowCustomEnabled(false)
+                    title = "영찬"
+                }
+            }
+        }
     }
 
     private fun setView() {
@@ -42,6 +58,9 @@ class MainActivity : AppCompatActivity() {
                 addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                     override fun onTabSelected(tab: TabLayout.Tab?) {
                         tab ?: return
+
+                        setToolbar(tab.position)
+
                         val findFragment = supportFragmentManager.findFragmentByTag("${tab.text}")
                         if (findFragment == null) {
                             supportFragmentManager.beginTransaction()
