@@ -1,6 +1,7 @@
 package com.kychan.mlog.model.response
 
 import com.google.gson.annotations.SerializedName
+import com.kychan.mlog.presentation.main.search.SearchMovieItem
 
 class SearchMovieResponse(
     @SerializedName("lastBuildDate")
@@ -31,5 +32,15 @@ class SearchMovieResponse(
         val actor: String,
         @SerializedName("userRating")
         val userRating: Double
-    )
+    ) {
+        fun toSearchMovieItem(): SearchMovieItem =
+            SearchMovieItem(
+                image = image,
+                title = title,
+                director = director,
+                actor = actor,
+                pubDate = pubDate,
+                userRating = userRating
+            )
+    }
 }
