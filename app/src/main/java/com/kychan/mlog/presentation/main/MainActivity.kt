@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setView() {
         with(binding) {
+            setSupportActionBar(toolbar)
             val studyTabList = resources.getStringArray(R.array.home_tab)
             studyTabList.forEach { title ->
                 bottomTab.addTab(bottomTab.newTab().setText(title))
