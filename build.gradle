@@ -30,4 +30,5 @@ ext {
     activityVersion = '1.2.2'
     fragmentVersion = '1.3.2'
     retrofitVersion = '2.6.2'
+    glideVersion = '4.10.0'
 }
