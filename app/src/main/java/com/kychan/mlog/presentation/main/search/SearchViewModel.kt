@@ -19,6 +19,8 @@ class SearchViewModel : ViewModel() {
         get() = _movieList
 
     fun getSearchMovie(searchKeyword: String) {
+        if (searchKeyword.isEmpty()) return
+
         Retrofit.Builder()
             .baseUrl("https://openapi.naver.com/")
             .addConverterFactory(GsonConverterFactory.create())
