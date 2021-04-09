@@ -33,14 +33,16 @@ class SearchMovieResponse(
         @SerializedName("userRating")
         val userRating: Double
     ) {
-        fun toSearchMovieItem(): SearchMovieItem =
-            SearchMovieItem(
+        fun toSearchMovieItem(): SearchMovieItem {
+            val replaceTitle = title.replace("<b>","").replace("</b>","")
+            return SearchMovieItem(
                 image = image,
-                title = title,
+                title = replaceTitle,
                 director = director,
                 actor = actor,
                 pubDate = pubDate,
                 userRating = userRating
             )
+        }
     }
 }
