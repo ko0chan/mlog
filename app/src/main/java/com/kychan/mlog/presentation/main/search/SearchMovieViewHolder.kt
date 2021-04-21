@@ -23,7 +23,7 @@ class SearchMovieViewHolder(
             director.text = item.director
             actor.text = item.actor
             pubDate.text = item.pubDate
-            userRating.rating = item.userRating
+            userRating.rating = item.userRating / 2
         }
     }
 }
