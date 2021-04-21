@@ -30,6 +30,7 @@ class SearchViewModel : ViewModel() {
             .enqueue(object : Callback<SearchMovieResponse> {
                 override fun onResponse(call: Call<SearchMovieResponse>, response: Response<SearchMovieResponse>) {
                     Log.d("TAG", "성공 : ${response.raw()}")
+                    Log.d("TAG", "성공 : ${response.body()?.movieResponseList}")
 
                     _movieList.value = response.body()?.movieResponseList?.map {
                         it.toSearchMovieItem()
