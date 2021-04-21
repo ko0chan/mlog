@@ -10,6 +10,6 @@ fun ImageView.setImage(imageUrl: String) {
         .apply {
             centerCrop()
         }
-        .error(R.drawable.ic_cancel)
+        .error(R.drawable.empty_movie)
         .into(this)
 }
