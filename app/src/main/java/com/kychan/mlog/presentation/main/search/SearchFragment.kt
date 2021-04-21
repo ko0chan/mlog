@@ -43,13 +43,20 @@ class SearchFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
         binding.lifecycleOwner = this
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         setView()
         setViewModel()
-        return binding.root
     }
 
     private fun setView() {
         with(binding) {
+            (activity as MainActivity).supportActionBar?.setCustomView(R.layout.view_search)
+
             val inputMethodManager =
                 context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 

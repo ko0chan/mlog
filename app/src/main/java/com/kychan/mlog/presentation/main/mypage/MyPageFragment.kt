@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.kychan.mlog.R
 import com.kychan.mlog.databinding.FragmentMyPageBinding
+import com.kychan.mlog.presentation.main.MainActivity
 
 class MyPageFragment : Fragment() {
 
@@ -23,6 +24,12 @@ class MyPageFragment : Fragment() {
         binding.lifecycleOwner = this
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        (activity as MainActivity).supportActionBar?.title = "영찬"
     }
 
     companion object {
