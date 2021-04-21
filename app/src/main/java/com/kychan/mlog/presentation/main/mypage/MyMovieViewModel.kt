@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MyPageViewModel : ViewModel() {
+class MyMovieViewModel : ViewModel() {
 
     private val _movieList = MutableLiveData<List<MyMovieItem>>()
     val movieList: LiveData<List<MyMovieItem>>

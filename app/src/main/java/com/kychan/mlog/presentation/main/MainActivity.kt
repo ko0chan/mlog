@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.kychan.mlog.R
 import com.kychan.mlog.databinding.ActivityMainBinding
-import com.kychan.mlog.presentation.main.mypage.MyPageFragment
+import com.kychan.mlog.presentation.main.mypage.MyMovieFragment
 import com.kychan.mlog.presentation.main.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
     private fun getFragment(position: Int): Fragment {
         return when (position) {
             0 -> SearchFragment.newInstance()
-            1 -> MyPageFragment.newInstance()
+            1 -> MyMovieFragment.newInstance()
             else -> error("Invalid position")
         }
     }
