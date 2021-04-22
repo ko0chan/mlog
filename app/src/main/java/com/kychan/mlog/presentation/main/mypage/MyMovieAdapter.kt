@@ -3,9 +3,10 @@ package com.kychan.mlog.presentation.main.mypage
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import com.kychan.mlog.presentation.main.search.SearchMovieItem
 
-class MyMovieAdapter(private val itemClick: (MyMovieItem) -> Unit) :
-    ListAdapter<MyMovieItem, MyMovieViewHolder>(DIFF_CALLBACK) {
+class MyMovieAdapter(private val itemClick: (SearchMovieItem) -> Unit) :
+    ListAdapter<SearchMovieItem, MyMovieViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyMovieViewHolder =
         MyMovieViewHolder(parent, itemClick)
@@ -15,11 +16,11 @@ class MyMovieAdapter(private val itemClick: (MyMovieItem) -> Unit) :
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MyMovieItem>() {
-            override fun areItemsTheSame(oldItem: MyMovieItem, newItem: MyMovieItem): Boolean =
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<SearchMovieItem>() {
+            override fun areItemsTheSame(oldItem: SearchMovieItem, newItem: SearchMovieItem): Boolean =
                 oldItem.image == newItem.image
 
-            override fun areContentsTheSame(oldItem: MyMovieItem, newItem: MyMovieItem): Boolean =
+            override fun areContentsTheSame(oldItem: SearchMovieItem, newItem: SearchMovieItem): Boolean =
                 oldItem == newItem
         }
     }
