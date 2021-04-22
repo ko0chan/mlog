@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         setView()
         setToolbar(0)
+        title = null
     }
 
     private fun setToolbar(position: Int) {
