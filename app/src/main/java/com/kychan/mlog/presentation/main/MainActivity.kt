@@ -62,7 +62,8 @@ class MainActivity : AppCompatActivity() {
                         val findFragment = supportFragmentManager.findFragmentByTag("${tab.text}")
                         if (findFragment == null) {
                             supportFragmentManager.beginTransaction()
-                                .add(R.id.home_frg_container, getFragment(tab.position), "${tab.text}").commit()
+                                .add(R.id.home_frg_container, getFragment(tab.position), "${tab.text}")
+                                .commit()
                         } else {
                             supportFragmentManager.beginTransaction()
                                 .show(findFragment)
@@ -95,6 +96,25 @@ class MainActivity : AppCompatActivity() {
             0 -> SearchFragment.newInstance()
             1 -> MyPageFragment.newInstance()
             else -> error("Invalid position")
+        }
+    }
+
+    override fun onBackPressed() {
+        val fragment = supportFragmentManager.findFragmentById(R.id.home_frg_container)
+
+        when (fragment) {
+            is MyPageFragment -> {
+                if (binding.bottomTab.selectedTabPosition != 1) {
+                    super.onBackPressed()
+                } else {
+                    if (fragment.onBackPressed()) {
+                        super.onBackPressed()
+                    }
+                }
+            }
+            else -> {
+                super.onBackPressed()
+            }
         }
     }
 }
