@@ -15,4 +15,7 @@ interface MovieDao {
 
     @Insert
     fun insertAll(movieEntity: List<MovieEntity>)
+
+    @Query("DELETE FROM movie_table WHERE link = (:link)")
+    fun delete(link: String)
 }

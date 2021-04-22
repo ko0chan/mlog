@@ -16,7 +16,7 @@ class MyMovieViewHolder(
 
     fun bind(item: SearchMovieItem) {
         with(binding) {
-            root.setOnClickListener {
+            bookmark.setOnClickListener {
                 itemClick(item)
             }
             movieImage.setImage(item.image)

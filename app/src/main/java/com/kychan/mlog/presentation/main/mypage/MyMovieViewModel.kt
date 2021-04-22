@@ -12,4 +12,9 @@ class MyMovieViewModel @Inject constructor(private val movieDao: MovieDao) : Vie
 
     val movieList: LiveData<List<MovieEntity>> = movieDao.getMovieAll()
 
+    fun deleteMovie(link: String) {
+        Thread {
+            movieDao.delete(link)
+        }.start()
+    }
 }
