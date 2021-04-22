@@ -5,14 +5,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kychan.mlog.model.api.NaverApi
+import com.kychan.mlog.model.database.MovieDao
+import com.kychan.mlog.model.database.MovieEntity
 import com.kychan.mlog.model.response.SearchMovieResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class SearchViewModel : ViewModel() {
+@HiltViewModel
+class SearchViewModel @Inject constructor(private val movieDao: MovieDao) : ViewModel() {
 
     private val _movieList = MutableLiveData<List<SearchMovieItem>>()
     val movieList: LiveData<List<SearchMovieItem>>
@@ -42,5 +47,9 @@ class SearchViewModel : ViewModel() {
                 }
 
             })
+    }
+
+    fun insertMovie(item: SearchMovieItem) {
+        movieDao.insert(MovieEntity.of(item))
     }
 }
