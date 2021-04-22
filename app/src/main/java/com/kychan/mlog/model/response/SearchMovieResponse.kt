@@ -38,6 +38,8 @@ class SearchMovieResponse(
             return SearchMovieItem(
                 image = image,
                 title = replaceTitle,
+                link = link,
+                subTitle = subTitle,
                 director = director,
                 actor = actor,
                 pubDate = pubDate,
