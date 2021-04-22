@@ -50,6 +50,8 @@ class SearchViewModel @Inject constructor(private val movieDao: MovieDao) : View
     }
 
     fun insertMovie(item: SearchMovieItem) {
-        movieDao.insert(MovieEntity.of(item))
+        Thread {
+            movieDao.insert(MovieEntity.of(item))
+        }.start()
     }
 }
