@@ -31,6 +31,7 @@ class SearchFragment : Fragment() {
     private val searchMovieAdapter by lazy {
         SearchMovieAdapter {
             Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+            searchViewModel.insertMovie(it)
         }
     }
 

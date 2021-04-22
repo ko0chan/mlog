@@ -3,6 +3,7 @@ package com.kychan.mlog.presentation.main.search
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.kychan.mlog.R
 import com.kychan.mlog.databinding.ItemMovieBinding
 import com.kychan.mlog.ext.setImage
 
@@ -15,8 +16,9 @@ class SearchMovieViewHolder(
 
     fun bind(item: SearchMovieItem) {
         with(binding) {
-            root.setOnClickListener {
+            bookmark.setOnClickListener {
                 itemClick(item)
+                bookmark.setImageResource(R.drawable.ic_bookmark)
             }
             movieImage.setImage(item.image)
             title.text = item.title
