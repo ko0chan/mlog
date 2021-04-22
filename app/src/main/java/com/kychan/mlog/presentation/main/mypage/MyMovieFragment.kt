@@ -20,9 +20,6 @@ class MyMovieFragment : Fragment() {
         MyMovieAdapter {
             parentFragmentManager.beginTransaction()
                 .hide(this)
-                .commit()
-
-            childFragmentManager.beginTransaction()
                 .add(
                     R.id.my_page_frg_container,
                     MyMovieDetailFragment.newInstance()
