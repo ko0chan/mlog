@@ -19,7 +19,9 @@ import androidx.fragment.app.viewModels
 import com.kychan.mlog.R
 import com.kychan.mlog.databinding.FragmentSearchBinding
 import com.kychan.mlog.presentation.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding

@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.kychan.mlog.R
 import com.kychan.mlog.databinding.FragmentMyMovieBinding
 import com.kychan.mlog.presentation.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyMovieFragment : Fragment() {
 
     private lateinit var binding: FragmentMyMovieBinding
