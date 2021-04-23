@@ -32,8 +32,11 @@ class SearchFragment : Fragment() {
         get() = (activity as MainActivity).supportActionBar?.customView?.findViewById(R.id.clear_button) as? ImageView
     private val searchMovieAdapter by lazy {
         SearchMovieAdapter {
-            Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
-            searchViewModel.insertMovie(it)
+            if (it.isMyMovie) {
+                searchViewModel.deleteMovie(it.link)
+            } else {
+                searchViewModel.insertMovie(it)
+            }
         }
     }
 

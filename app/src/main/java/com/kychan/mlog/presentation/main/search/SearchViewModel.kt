@@ -97,4 +97,10 @@ class SearchViewModel @Inject constructor(private val movieDao: MovieDao) : View
             movieDao.insert(MovieEntity.of(item))
         }.start()
     }
+
+    fun deleteMovie(link: String) {
+        Thread {
+            movieDao.delete(link)
+        }.start()
+    }
 }

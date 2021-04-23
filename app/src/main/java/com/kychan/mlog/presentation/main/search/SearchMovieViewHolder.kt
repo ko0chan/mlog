@@ -18,12 +18,8 @@ class SearchMovieViewHolder(
         with(binding) {
             bookmark.setOnClickListener {
                 itemClick(item)
-                bookmark.setImageResource(R.drawable.ic_bookmark)
-            }
-            if (item.isMyMovie) {
-                bookmark.setImageResource(R.drawable.ic_bookmark)
-            } else {
-                bookmark.setImageResource(R.drawable.ic_bookmark_border)
+                item.isMyMovie = !item.isMyMovie
+                setBookmarkImage(item.isMyMovie)
             }
             movieImage.setImage(item.image)
             title.text = item.title
@@ -31,6 +27,16 @@ class SearchMovieViewHolder(
             actor.text = item.actor
             pubDate.text = item.pubDate
             userRating.rating = item.userRating / 2
+
+            setBookmarkImage(item.isMyMovie)
+        }
+    }
+
+    fun setBookmarkImage(isMyMovie: Boolean) {
+        if (isMyMovie) {
+            binding.bookmark.setImageResource(R.drawable.ic_bookmark)
+        } else {
+            binding.bookmark.setImageResource(R.drawable.ic_bookmark_border)
         }
     }
 }
