@@ -36,10 +36,13 @@
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/bookmark"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="워킹데드 시즌" />
