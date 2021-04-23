@@ -24,3 +24,9 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+
+    activityVersion = '1.2.2'
+    fragmentVersion = '1.3.2'
+}
