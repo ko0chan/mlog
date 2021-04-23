@@ -2,8 +2,9 @@
     <string name="app_name">mlog</string>
 
     <string name="home">홈</string>
-    <string name="my_page">마이페이지</string>
+    <string name="storage">보관함</string>
 
     <string name="empty_search">검색결과가 없습니다</string>
+    <string name="hint_search">영화를 검색해 보세요</string>
     <string name="search">검색</string>
 </resources>

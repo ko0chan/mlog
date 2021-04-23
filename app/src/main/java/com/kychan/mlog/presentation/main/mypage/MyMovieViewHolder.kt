@@ -21,7 +21,7 @@ class MyMovieViewHolder(
             }
             movieImage.setImage(item.image)
             title.text = item.title
-            userRating.rating = item.userRating
+            userRating.rating = item.userRating / 2
         }
     }
 }

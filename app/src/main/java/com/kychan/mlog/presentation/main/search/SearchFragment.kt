@@ -72,6 +72,7 @@ class SearchFragment : Fragment() {
                         if (text.isNotEmpty()) {
                             searchViewModel.getSearchMovie(text.toString())
                             inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
+                            emptyView.text = getString(R.string.empty_search)
                             return@setOnEditorActionListener false
                         }
                     }
