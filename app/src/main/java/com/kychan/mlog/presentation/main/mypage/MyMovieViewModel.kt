@@ -3,22 +3,32 @@ package com.kychan.mlog.presentation.main.mypage
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.kychan.mlog.model.database.MovieDao
+import com.kychan.mlog.model.database.MovieEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MyMovieViewModel : ViewModel() {
+@HiltViewModel
+class MyMovieViewModel @Inject constructor(private val movieDao: MovieDao) : ViewModel() {
 
-    private val _movieList = MutableLiveData<List<MyMovieItem>>()
-    val movieList: LiveData<List<MyMovieItem>>
+    private val _movieList = MutableLiveData<List<MovieEntity>>()
+    val movieList: LiveData<List<MovieEntity>>
         get() = _movieList
 
-    fun getMyMovie() {
-        _movieList.value = listOf(
-            MyMovieItem("", "11111111111111111", 1.0f),
-            MyMovieItem("", "2", 1.5f),
-            MyMovieItem("", "3", 2.0f),
-            MyMovieItem("", "4", 2.5f),
-            MyMovieItem("", "5", 3.0f),
-            MyMovieItem("", "6", 3.5f),
-            MyMovieItem("", "7", 4.0f),
-        )
+    fun getMovieAll() {
+        viewModelScope.launch {
+            movieDao.getMovieAll().collect {
+                _movieList.value = it
+            }
+        }
+    }
+
+    fun deleteMovie(link: String) {
+        Thread {
+            movieDao.delete(link)
+        }.start()
     }
 }

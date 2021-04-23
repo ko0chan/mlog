@@ -11,20 +11,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.kychan.mlog.R
 import com.kychan.mlog.databinding.FragmentMyMovieBinding
 import com.kychan.mlog.presentation.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyMovieFragment : Fragment() {
 
     private lateinit var binding: FragmentMyMovieBinding
-    private val myPageViewModel by viewModels<MyMovieViewModel>()
+    private val myMovieViewModel by viewModels<MyMovieViewModel>()
     private val myMovieAdapter by lazy {
         MyMovieAdapter {
-            parentFragmentManager.beginTransaction()
-                .hide(this)
-                .add(
-                    R.id.my_page_frg_container,
-                    MyMovieDetailFragment.newInstance()
-                )
-                .commit()
+            myMovieViewModel.deleteMovie(it.link)
         }
     }
 
@@ -51,16 +47,18 @@ class MyMovieFragment : Fragment() {
 
     private fun setView() {
         with(binding) {
-            myPageViewModel.getMyMovie()
+            myMovieViewModel.getMovieAll()
             rvMovie.adapter = myMovieAdapter
             rvMovie.layoutManager = GridLayoutManager(context, 3)
         }
     }
 
     private fun setViewModel() {
-        with(myPageViewModel) {
+        with(myMovieViewModel) {
             movieList.observe(viewLifecycleOwner, {
-                myMovieAdapter.submitList(it)
+                myMovieAdapter.submitList(it.map { movie ->
+                    movie.toMovieItem()
+                })
             })
         }
     }

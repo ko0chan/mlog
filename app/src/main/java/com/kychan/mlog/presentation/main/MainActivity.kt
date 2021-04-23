@@ -9,7 +9,9 @@ import com.kychan.mlog.R
 import com.kychan.mlog.databinding.ActivityMainBinding
 import com.kychan.mlog.presentation.main.mypage.MyPageFragment
 import com.kychan.mlog.presentation.main.search.SearchFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

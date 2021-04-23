@@ -19,7 +19,9 @@ import androidx.fragment.app.viewModels
 import com.kychan.mlog.R
 import com.kychan.mlog.databinding.FragmentSearchBinding
 import com.kychan.mlog.presentation.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
@@ -30,7 +32,11 @@ class SearchFragment : Fragment() {
         get() = (activity as MainActivity).supportActionBar?.customView?.findViewById(R.id.clear_button) as? ImageView
     private val searchMovieAdapter by lazy {
         SearchMovieAdapter {
-            Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+            if (it.isMyMovie) {
+                searchViewModel.deleteMovie(it.link)
+            } else {
+                searchViewModel.insertMovie(it)
+            }
         }
     }
 

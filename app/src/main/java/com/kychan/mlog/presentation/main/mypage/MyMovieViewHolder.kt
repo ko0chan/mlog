@@ -5,17 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kychan.mlog.databinding.ItemMyMovieBinding
 import com.kychan.mlog.ext.setImage
+import com.kychan.mlog.presentation.main.search.SearchMovieItem
 
 class MyMovieViewHolder(
     parent: ViewGroup,
-    private val itemClick: (MyMovieItem) -> Unit,
+    private val itemClick: (SearchMovieItem) -> Unit,
     private val binding: ItemMyMovieBinding =
         ItemMyMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: MyMovieItem) {
+    fun bind(item: SearchMovieItem) {
         with(binding) {
-            root.setOnClickListener {
+            bookmark.setOnClickListener {
                 itemClick(item)
             }
             movieImage.setImage(item.image)
