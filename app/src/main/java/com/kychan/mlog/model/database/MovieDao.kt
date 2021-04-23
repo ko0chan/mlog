@@ -1,14 +1,14 @@
 package com.kychan.mlog.model.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
     @Query("SELECT * FROM movie_table")
-    fun getMovieAll(): LiveData<List<MovieEntity>>
+    fun getMovieAll(): Flow<List<MovieEntity>>
 
     @Insert
     fun insert(movieEntity: MovieEntity)

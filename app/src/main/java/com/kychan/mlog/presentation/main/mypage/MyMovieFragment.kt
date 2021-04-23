@@ -47,6 +47,7 @@ class MyMovieFragment : Fragment() {
 
     private fun setView() {
         with(binding) {
+            myMovieViewModel.getMovieAll()
             rvMovie.adapter = myMovieAdapter
             rvMovie.layoutManager = GridLayoutManager(context, 3)
         }
