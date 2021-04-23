@@ -43,7 +43,8 @@ class SearchMovieResponse(
                 director = director,
                 actor = actor,
                 pubDate = pubDate,
-                userRating = userRating
+                userRating = userRating,
+                isMyMovie = false
             )
         }
     }

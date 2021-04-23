@@ -20,6 +20,11 @@ class SearchMovieViewHolder(
                 itemClick(item)
                 bookmark.setImageResource(R.drawable.ic_bookmark)
             }
+            if (item.isMyMovie) {
+                bookmark.setImageResource(R.drawable.ic_bookmark)
+            } else {
+                bookmark.setImageResource(R.drawable.ic_bookmark_border)
+            }
             movieImage.setImage(item.image)
             title.text = item.title
             director.text = item.director

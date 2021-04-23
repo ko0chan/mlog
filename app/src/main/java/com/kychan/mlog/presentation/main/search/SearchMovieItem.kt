@@ -8,5 +8,6 @@ data class SearchMovieItem(
     val director: String,
     val actor: String,
     val pubDate: String,
-    val userRating: Float
+    val userRating: Float,
+    val isMyMovie: Boolean
 )

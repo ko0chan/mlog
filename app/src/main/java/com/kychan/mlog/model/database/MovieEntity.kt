@@ -25,7 +25,8 @@ data class MovieEntity(
             pubDate = pubDate,
             director = director,
             actor = actor,
-            userRating = userRating
+            userRating = userRating,
+            isMyMovie = true
         )
 
     companion object {
