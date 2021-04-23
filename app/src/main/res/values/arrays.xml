@@ -2,6 +2,6 @@
 <resources>
     <string-array name="home_tab">
         <item>@string/home</item>
-        <item>@string/my_page</item>
+        <item>@string/storage</item>
     </string-array>
 </resources>

@@ -39,7 +39,7 @@ class MyMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as MainActivity).supportActionBar?.title = "영찬"
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.storage)
         setView()
         setViewModel()
 
