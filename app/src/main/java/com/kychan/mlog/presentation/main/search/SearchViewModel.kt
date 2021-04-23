@@ -72,20 +72,20 @@ class SearchViewModel @Inject constructor(private val movieDao: MovieDao) : View
         }
 
         val list = mutableListOf<SearchMovieItem>()
-        searchMovieList.forEach { movieResponse ->
+        searchMovieList.map {
+            it.toSearchMovieItem()
+        }.forEach { searchMovieItem ->
             list.add(
                 SearchMovieItem(
-                    image = movieResponse.image,
-                    title = movieResponse.title,
-                    link = movieResponse.link,
-                    subTitle = movieResponse.subTitle,
-                    director = movieResponse.director,
-                    actor = movieResponse.actor,
-                    pubDate = movieResponse.pubDate,
-                    userRating = movieResponse.userRating,
-                    isMyMovie = movieResponse.link == myMovieLinkList.find {
-                        it == movieResponse.link
-                    }
+                    image = searchMovieItem.image,
+                    title = searchMovieItem.title,
+                    link = searchMovieItem.link,
+                    subTitle = searchMovieItem.subTitle,
+                    director = searchMovieItem.director,
+                    actor = searchMovieItem.actor,
+                    pubDate = searchMovieItem.pubDate,
+                    userRating = searchMovieItem.userRating,
+                    isMyMovie = myMovieLinkList.contains(searchMovieItem.link)
                 )
             )
         }
