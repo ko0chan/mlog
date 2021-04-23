@@ -36,11 +36,9 @@ class MainActivity : AppCompatActivity() {
             when (position) {
                 0 -> {
                     setDisplayShowCustomEnabled(true)
-                    setCustomView(R.layout.view_search)
                 }
                 1 -> {
                     setDisplayShowCustomEnabled(false)
-                    title = "영찬"
                 }
             }
         }

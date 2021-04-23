@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kychan.mlog.databinding.ItemMovieBinding
+import com.kychan.mlog.ext.setImage
 
 class SearchMovieViewHolder(
     parent: ViewGroup,
@@ -17,12 +18,12 @@ class SearchMovieViewHolder(
             root.setOnClickListener {
                 itemClick(item)
             }
-//            movieImage
+            movieImage.setImage(item.image)
             title.text = item.title
             director.text = item.director
             actor.text = item.actor
-            pubDate.text = item.pubDate.toString()
-            userRating.rating = item.userRating.toFloat()
+            pubDate.text = item.pubDate
+            userRating.rating = item.userRating / 2
         }
     }
 }
