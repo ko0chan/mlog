@@ -1,30 +1,20 @@
 package com.kychan.mlog.presentation.main.mypage
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import androidx.paging.PagedList
+import androidx.paging.toLiveData
 import com.kychan.mlog.model.database.MovieDao
-import com.kychan.mlog.model.database.MovieEntity
+import com.kychan.mlog.presentation.main.search.SearchMovieItem
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MyMovieViewModel @Inject constructor(private val movieDao: MovieDao) : ViewModel() {
 
-    private val _movieList = MutableLiveData<List<MovieEntity>>()
-    val movieList: LiveData<List<MovieEntity>>
-        get() = _movieList
-
-    fun getMovieAll() {
-        viewModelScope.launch {
-            movieDao.getMovieAll().collect {
-                _movieList.value = it
-            }
-        }
-    }
+    val movieList: LiveData<PagedList<SearchMovieItem>> =
+        movieDao.getMovieAll().map {
+            it.toMovieItem()
+        }.toLiveData(pageSize = 10)
 
     fun deleteMovie(link: String) {
         Thread {

@@ -47,7 +47,6 @@ class MyMovieFragment : Fragment() {
 
     private fun setView() {
         with(binding) {
-            myMovieViewModel.getMovieAll()
             rvMovie.adapter = myMovieAdapter
             rvMovie.layoutManager = GridLayoutManager(context, 3)
         }
@@ -56,9 +55,7 @@ class MyMovieFragment : Fragment() {
     private fun setViewModel() {
         with(myMovieViewModel) {
             movieList.observe(viewLifecycleOwner, {
-                myMovieAdapter.submitList(it.map { movie ->
-                    movie.toMovieItem()
-                })
+                myMovieAdapter.submitList(it)
             })
         }
     }

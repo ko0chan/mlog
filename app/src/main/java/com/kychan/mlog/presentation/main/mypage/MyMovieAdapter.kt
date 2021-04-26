@@ -1,18 +1,21 @@
 package com.kychan.mlog.presentation.main.mypage
 
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import com.kychan.mlog.presentation.main.search.SearchMovieItem
 
 class MyMovieAdapter(private val itemClick: (SearchMovieItem) -> Unit) :
-    ListAdapter<SearchMovieItem, MyMovieViewHolder>(DIFF_CALLBACK) {
+    PagedListAdapter<SearchMovieItem, MyMovieViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyMovieViewHolder =
         MyMovieViewHolder(parent, itemClick)
 
     override fun onBindViewHolder(holder: MyMovieViewHolder, position: Int) {
-        holder.bind(currentList[position])
+        val searchMovieItem: SearchMovieItem? = getItem(position)
+        if (searchMovieItem != null) {
+            holder.bind(searchMovieItem)
+        }
     }
 
     companion object {
