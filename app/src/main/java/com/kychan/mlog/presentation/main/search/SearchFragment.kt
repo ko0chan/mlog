@@ -2,6 +2,7 @@ package com.kychan.mlog.presentation.main.search
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,6 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
@@ -70,7 +70,7 @@ class SearchFragment : Fragment() {
                 setOnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                         if (text.isNotEmpty()) {
-                            searchViewModel.getSearchMovie(text.toString())
+                            searchViewModel.setKeyword(text.toString())
                             inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
                             emptyView.text = getString(R.string.empty_search)
                             return@setOnEditorActionListener false
@@ -98,7 +98,9 @@ class SearchFragment : Fragment() {
         with(searchViewModel) {
             movieList.observe(viewLifecycleOwner, { movieList ->
                 searchMovieAdapter.submitList(movieList)
-                binding.emptyView.isVisible = movieList.isNullOrEmpty()
+            })
+            total.observe(viewLifecycleOwner, {
+                binding.emptyView.isVisible = it == null
             })
         }
     }

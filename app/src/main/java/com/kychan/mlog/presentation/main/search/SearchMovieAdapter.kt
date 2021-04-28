@@ -1,17 +1,20 @@
 package com.kychan.mlog.presentation.main.search
 
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 
 class SearchMovieAdapter(private val itemClick: (SearchMovieItem) -> Unit) :
-    ListAdapter<SearchMovieItem, SearchMovieViewHolder>(DIFF_CALLBACK) {
+    PagedListAdapter<SearchMovieItem, SearchMovieViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchMovieViewHolder =
         SearchMovieViewHolder(parent, itemClick)
 
     override fun onBindViewHolder(holder: SearchMovieViewHolder, position: Int) {
-        holder.bind(currentList[position])
+        val searchMovieItem: SearchMovieItem? = getItem(position)
+        if (searchMovieItem != null) {
+            holder.bind(searchMovieItem)
+        }
     }
 
     override fun onBindViewHolder(
@@ -20,7 +23,10 @@ class SearchMovieAdapter(private val itemClick: (SearchMovieItem) -> Unit) :
         payloads: MutableList<Any>
     ) {
         if (payloads.contains(CHECK_ACTIVATE)) {
-            holder.setBookmarkImage(currentList[position].isMyMovie)
+            val searchMovieItem: SearchMovieItem? = getItem(position)
+            if (searchMovieItem != null) {
+                holder.setBookmarkImage(searchMovieItem.isMyMovie)
+            }
         } else {
             super.onBindViewHolder(holder, position, payloads)
         }
