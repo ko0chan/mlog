@@ -6,7 +6,6 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.kychan.mlog.factory.SearchMovieDataSourceFactory
 import com.kychan.mlog.model.database.MovieDao
-import com.kychan.mlog.model.database.MovieEntity
 import com.kychan.mlog.presentation.main.search.SearchMovieItem
 import javax.inject.Inject
 
@@ -34,8 +33,10 @@ class SearchMovieRepository @Inject constructor(
         ).build()
     }
 
-    fun getDataFromLocal(): LiveData<PagedList<MovieEntity>> {
-        val dataSourceFactory = movieDao.getMovieAll()
+    fun getMovieAll(): LiveData<PagedList<SearchMovieItem>> {
+        val dataSourceFactory = movieDao.getMovieAll().map {
+            it.toMovieItem()
+        }
         return LivePagedListBuilder(
             dataSourceFactory,
             SearchMovieDataSourceFactory.pagedListConfig()

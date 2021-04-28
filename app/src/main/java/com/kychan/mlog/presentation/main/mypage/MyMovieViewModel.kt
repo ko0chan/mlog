@@ -2,19 +2,21 @@ package com.kychan.mlog.presentation.main.mypage
 
 import androidx.lifecycle.*
 import androidx.paging.PagedList
-import androidx.paging.toLiveData
 import com.kychan.mlog.model.database.MovieDao
 import com.kychan.mlog.presentation.main.search.SearchMovieItem
+import com.kychan.mlog.repository.SearchMovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MyMovieViewModel @Inject constructor(private val movieDao: MovieDao) : ViewModel() {
+class MyMovieViewModel @Inject constructor(
+    private val movieDao: MovieDao,
+    private val searchMovieRepository: SearchMovieRepository
+) : ViewModel() {
 
-    val movieList: LiveData<PagedList<SearchMovieItem>> =
-        movieDao.getMovieAll().map {
-            it.toMovieItem()
-        }.toLiveData(pageSize = 10)
+    val movieList: LiveData<PagedList<SearchMovieItem>> by lazy {
+        searchMovieRepository.getMovieAll()
+    }
 
     fun deleteMovie(link: String) {
         Thread {
