@@ -1,4 +1,4 @@
-package com.kychan.mlog.model.response
+package com.kychan.mlog.model
 
 import com.google.gson.annotations.SerializedName
 import com.kychan.mlog.presentation.main.search.SearchMovieItem

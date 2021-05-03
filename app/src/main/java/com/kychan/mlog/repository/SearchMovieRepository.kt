@@ -5,7 +5,7 @@ import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.kychan.mlog.factory.SearchMovieDataSourceFactory
-import com.kychan.mlog.model.database.MovieDao
+import com.kychan.mlog.data.local.dao.MovieDao
 import com.kychan.mlog.presentation.main.search.SearchMovieItem
 import javax.inject.Inject
 
