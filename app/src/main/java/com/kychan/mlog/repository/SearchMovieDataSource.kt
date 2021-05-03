@@ -28,8 +28,6 @@ class SearchMovieDataSource @Inject constructor(
             .enqueue(object : Callback<SearchMovieResponse> {
                 override fun onResponse(call: Call<SearchMovieResponse>, response: Response<SearchMovieResponse>) {
                     Log.d("TAG", "성공 : ${response.raw()}")
-                    Log.d("TAG", "성공 : ${response.body()?.total}")
-                    Log.d("TAG", "성공 : ${response.body()?.movieResponseList}")
                     itemTotal.postValue(response.body()?.total)
 
                     callback(response.body() ?: return)
@@ -42,13 +40,10 @@ class SearchMovieDataSource @Inject constructor(
     }
 
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<SearchMovieResponse.MovieResponse>) {
-        fetchData(1, params.requestedLoadSize) {
-            val totalCount = it.total
+        fetchData(1, params.requestedLoadSize) { searchMovieResponse ->
+            val totalCount = searchMovieResponse.total
             val position = computeInitialLoadPosition(params, totalCount)
-            val loadSize = computeInitialLoadSize(params, position, totalCount)
-            fetchData(position + 1, loadSize) { searchMovieResponse ->
-                callback.onResult(searchMovieResponse.movieResponseList, position, totalCount)
-            }
+            callback.onResult(searchMovieResponse.movieResponseList, position, totalCount)
         }
     }
 
