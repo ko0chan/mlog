@@ -4,12 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PagedList
 import com.kychan.mlog.model.api.NaverApi
+import com.kychan.mlog.model.database.MovieDao
 import com.kychan.mlog.presentation.main.search.SearchMovieItem
 import com.kychan.mlog.repository.SearchMovieDataSource
 import javax.inject.Inject
 
 class SearchMovieDataSourceFactory @Inject constructor(
     private val naverApi: NaverApi,
+    private val movieDao: MovieDao,
 ) : DataSource.Factory<Int, SearchMovieItem>() {
 
     val liveData = MutableLiveData<SearchMovieDataSource>()
@@ -25,7 +27,11 @@ class SearchMovieDataSourceFactory @Inject constructor(
 
         liveData.postValue(source)
         return source.map {
-            it.toSearchMovieItem()
+            val searchMovieItem = it.toSearchMovieItem()
+            Thread {
+                searchMovieItem.isMyMovie = movieDao.getMovieId().contains(it.link)
+            }.start()
+            searchMovieItem
         }
     }
 

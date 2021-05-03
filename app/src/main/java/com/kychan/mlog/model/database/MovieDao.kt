@@ -10,6 +10,9 @@ interface MovieDao {
     @Query("SELECT * FROM movie_table")
     fun getMovieAll(): DataSource.Factory<Int, MovieEntity>
 
+    @Query("SELECT link FROM movie_table")
+    fun getMovieId(): List<String>
+
     @Insert
     fun insert(movieEntity: MovieEntity)
 
