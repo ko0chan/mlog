@@ -19,7 +19,7 @@ class SearchMovieDataSource @Inject constructor(
 
     private var searchKeyword: String? = null
 
-    fun setKeyword(keyword: String) {
+    fun setSearchKeyword(keyword: String) {
         searchKeyword = keyword
     }
 

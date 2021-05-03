@@ -4,20 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.kychan.mlog.data.local.MovieDataSource
 import com.kychan.mlog.factory.SearchMovieDataSourceFactory
-import com.kychan.mlog.data.local.dao.MovieDao
 import com.kychan.mlog.presentation.main.search.SearchMovieItem
 import javax.inject.Inject
 
-class SearchMovieRepository @Inject constructor(
-    private val movieDao: MovieDao,
+class MovieRepository @Inject constructor(
+    private val movieDataSource: MovieDataSource,
     private val searchMovieDataSourceFactory: SearchMovieDataSourceFactory
 ) {
     fun invalidateDataSource() =
         searchMovieDataSourceFactory.liveData.value?.invalidate()
 
-    fun setKeyword(keyword: String) {
-        searchMovieDataSourceFactory.setKeyword(keyword)
+    fun setSearchKeyword(keyword: String) {
+        searchMovieDataSourceFactory.setSearchKeyword(keyword)
     }
 
     fun getItemTotal(): LiveData<Int> {
@@ -26,7 +26,7 @@ class SearchMovieRepository @Inject constructor(
         )
     }
 
-    fun getDataFromRemote(): LiveData<PagedList<SearchMovieItem>> {
+    fun getSearchMovieList(): LiveData<PagedList<SearchMovieItem>> {
         return LivePagedListBuilder(
             searchMovieDataSourceFactory,
             SearchMovieDataSourceFactory.pagedListConfig()
@@ -34,11 +34,10 @@ class SearchMovieRepository @Inject constructor(
     }
 
     fun getMovieAll(): LiveData<PagedList<SearchMovieItem>> {
-        val dataSourceFactory = movieDao.getMovieAll().map {
-            it.toMovieItem()
-        }
         return LivePagedListBuilder(
-            dataSourceFactory,
+            movieDataSource.getMovieAll().map {
+                it.toMovieItem()
+            },
             SearchMovieDataSourceFactory.pagedListConfig()
         ).build()
     }

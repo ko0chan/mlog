@@ -17,13 +17,13 @@ class SearchMovieDataSourceFactory @Inject constructor(
     val liveData = MutableLiveData<SearchMovieDataSource>()
     private var searchKeyword: String? = null
 
-    fun setKeyword(keyword: String) {
+    fun setSearchKeyword(keyword: String) {
         searchKeyword = keyword
     }
 
     override fun create(): DataSource<Int, SearchMovieItem> {
         val source = SearchMovieDataSource(naverApi)
-        source.setKeyword(searchKeyword.orEmpty())
+        source.setSearchKeyword(searchKeyword.orEmpty())
 
         liveData.postValue(source)
         return source.map {
