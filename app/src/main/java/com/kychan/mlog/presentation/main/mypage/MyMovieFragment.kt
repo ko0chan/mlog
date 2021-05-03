@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -47,7 +48,6 @@ class MyMovieFragment : Fragment() {
 
     private fun setView() {
         with(binding) {
-            myMovieViewModel.getMovieAll()
             rvMovie.adapter = myMovieAdapter
             rvMovie.layoutManager = GridLayoutManager(context, 3)
         }
@@ -56,9 +56,8 @@ class MyMovieFragment : Fragment() {
     private fun setViewModel() {
         with(myMovieViewModel) {
             movieList.observe(viewLifecycleOwner, {
-                myMovieAdapter.submitList(it.map { movie ->
-                    movie.toMovieItem()
-                })
+                myMovieAdapter.submitList(it)
+                binding.emptyView.isVisible = it.isNullOrEmpty()
             })
         }
     }
