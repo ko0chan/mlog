@@ -70,6 +70,7 @@ class SearchFragment : Fragment() {
                 setOnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                         if (text.isNotEmpty()) {
+                            rvMovie.layoutManager?.scrollToPosition(0)
                             searchViewModel.setKeyword(text.toString())
                             inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
                             emptyView.text = getString(R.string.empty_search)

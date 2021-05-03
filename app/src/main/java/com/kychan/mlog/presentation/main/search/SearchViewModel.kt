@@ -22,8 +22,11 @@ class SearchViewModel @Inject constructor(
         searchMovieRepository.getItemTotal()
 
     fun setKeyword(searchKeyword: String) {
-        searchMovieRepository.setKeyword(searchKeyword)
-        searchMovieRepository.invalidateDataSource()
+        searchMovieRepository.setSearchKeyword(searchKeyword)
+        Timer().schedule(100) {
+            searchMovieRepository.invalidateDataSource()
+        }
+
     }
 //
 //    private fun searchMovieItemListOf(
