@@ -11,4 +11,12 @@ class MovieDataSource @Inject constructor(
     fun getMovieAll(): DataSource.Factory<Int, MovieEntity> {
         return movieDao.getMovieAll()
     }
+
+    fun insertMovie(movieEntity: MovieEntity) {
+        movieDao.insert(movieEntity)
+    }
+
+    fun deleteMovie(link: String) {
+        movieDao.delete(link)
+    }
 }

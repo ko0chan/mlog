@@ -13,7 +13,6 @@ import kotlin.concurrent.schedule
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val movieDao: MovieDao,
     private val movieRepository: MovieRepository
 ) : ViewModel() {
 
@@ -33,13 +32,13 @@ class SearchViewModel @Inject constructor(
 
     fun insertMovie(item: SearchMovieItem) {
         Thread {
-            movieDao.insert(MovieEntity.of(item))
+            movieRepository.insertMovie(MovieEntity.of(item))
         }.start()
     }
 
     fun deleteMovie(link: String) {
         Thread {
-            movieDao.delete(link)
+            movieRepository.deleteMovie(link)
         }.start()
     }
 }

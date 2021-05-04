@@ -6,6 +6,7 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.kychan.mlog.data.local.MovieDataSource
 import com.kychan.mlog.factory.SearchMovieDataSourceFactory
+import com.kychan.mlog.model.MovieEntity
 import com.kychan.mlog.presentation.main.search.SearchMovieItem
 import javax.inject.Inject
 
@@ -40,5 +41,13 @@ class MovieRepository @Inject constructor(
             },
             SearchMovieDataSourceFactory.pagedListConfig()
         ).build()
+    }
+
+    fun insertMovie(movieEntity: MovieEntity) {
+        movieDataSource.insertMovie(movieEntity)
+    }
+
+    fun deleteMovie(link: String) {
+        movieDataSource.deleteMovie(link)
     }
 }
