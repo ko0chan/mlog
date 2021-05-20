@@ -2,8 +2,8 @@ package com.kychan.mlog.di
 
 import android.content.Context
 import androidx.room.Room
-import com.kychan.mlog.model.database.MovieDao
-import com.kychan.mlog.model.database.MovieDatabase
+import com.kychan.mlog.data.local.dao.MovieDao
+import com.kychan.mlog.data.local.MovieDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

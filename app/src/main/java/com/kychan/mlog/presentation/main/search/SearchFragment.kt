@@ -71,8 +71,11 @@ class SearchFragment : Fragment() {
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                         if (text.isNotEmpty()) {
                             searchViewModel.setKeyword(text.toString())
+                            searchViewModel.getMovieList().observe(viewLifecycleOwner, { movieList ->
+                                searchMovieAdapter.submitList(movieList)
+                            })
+
                             inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
-                            emptyView.text = getString(R.string.empty_search)
                             return@setOnEditorActionListener false
                         }
                     }
@@ -96,11 +99,12 @@ class SearchFragment : Fragment() {
 
     private fun setViewModel() {
         with(searchViewModel) {
-            movieList.observe(viewLifecycleOwner, { movieList ->
-                searchMovieAdapter.submitList(movieList)
-            })
             total.observe(viewLifecycleOwner, {
-                binding.emptyView.isVisible = it == null
+                Log.d("TAG1234", "$it")
+                binding.emptyView.isVisible = (it == null || it == 0)
+                if (it == null || it == 0) {
+                    binding.emptyView.text = getString(R.string.empty_search)
+                }
             })
         }
     }

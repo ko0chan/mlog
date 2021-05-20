@@ -1,6 +1,6 @@
 package com.kychan.mlog.di
 
-import com.kychan.mlog.model.api.NaverApi
+import com.kychan.mlog.data.remote.NaverApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
