@@ -1,10 +1,51 @@
-# mlog
-mlog Android
-## Mlog
-
-Mlog는 영화 정보를 검색하고 저장한 영화목록을 보여주는 어플입니다.
-
-
+<!-- 
 **Link**
+- Github: [https://github.com/ko0chan/mlog](https://github.com/ko0chan/mlog) -->
 
-- Github: [https://github.com/ko0chan/mlog](https://github.com/ko0chan/mlog)
+# Mlog
+<!-- <img src="android/ForEarthForUs/image/logo_image.png" width="80"> -->
+
+# OverView
+
+Mlog(Movie Log)는 영화를 검색하여 자신이 본 영화를 기록하는 앱 서비스입니다.<br>
+
+> 자신이 본 영화들을 간단하게 기록하고 관리해보세요!
+내가 봤던 영화들이 기억나지 않을 때,
+간단하게 찾아볼 수 있습니다.
+
+- 개발 기간 : 2021.03 ~ 2021.05
+
+# About
+
+**Technology Stack**
+
+- Tools : Android Studio 4.1
+- Language : Kotlin
+- DI : Hilt
+- Architecture Pattern : MVVM Pattern
+- Android Architecture Components(AAC)
+  - LiveData
+  - ViewModel
+  - DataBinding
+  - Paging2
+
+
+**Library**
+
+- [Lifecycle(LiveData, ViewModel)](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+- [Retrofit2](https://github.com/square/retrofit)
+- [Glide](https://github.com/bumptech/glide)
+- [Hilt](https://developer.android.com/jetpack/androidx/releases/hilt)
+- [Room](https://developer.android.com/jetpack/androidx/releases/room)
+- [Paging2](https://developer.android.com/jetpack/androidx/releases/paging#version_212_3)
+
+<!-- 
+# ToDo
+- 자체적인 알람 기능 구현.
+- 스크랩 통신 기능 수정.
+- 로딩 시 UX를 고려해서 갑자기 뜨는 것 말고 로딩을 위한 작업 필요.
+- 네트워크 상태  -->
+
+
+# WireFrame
+
