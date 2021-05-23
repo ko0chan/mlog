@@ -23,4 +23,10 @@ class MyMovieViewModel @Inject constructor(
             movieDao.delete(link)
         }.start()
     }
+
+    fun updateMovie(rating: Float, link: String) {
+        Thread {
+            movieDao.update(rating, link)
+        }.start()
+    }
 }

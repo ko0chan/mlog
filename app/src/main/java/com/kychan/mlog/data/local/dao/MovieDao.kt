@@ -22,4 +22,8 @@ interface MovieDao {
 
     @Query("DELETE FROM movie_table WHERE link = (:link)")
     fun delete(link: String)
+
+    @Query("UPDATE movie_table SET userRating = (:rating) WHERE link = (:link)")
+    fun update(rating: Float, link: String)
+
 }
