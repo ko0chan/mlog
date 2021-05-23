@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kychan.mlog.R
 import com.kychan.mlog.databinding.FragmentMyMovieBinding
+import com.kychan.mlog.presentation.MovieDialog
 import com.kychan.mlog.presentation.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +22,7 @@ class MyMovieFragment : Fragment() {
     private val myMovieViewModel by viewModels<MyMovieViewModel>()
     private val myMovieAdapter by lazy {
         MyMovieAdapter {
-            myMovieViewModel.deleteMovie(it.link)
+            MovieDialog.newInstance().show(childFragmentManager, "tt")
         }
     }
 
