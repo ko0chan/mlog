@@ -7,6 +7,7 @@ import androidx.paging.PagedList
 import com.kychan.mlog.data.local.MovieDataSource
 import com.kychan.mlog.factory.SearchMovieDataSourceFactory
 import com.kychan.mlog.model.MovieEntity
+import com.kychan.mlog.presentation.main.mypage.MyMovieItem
 import com.kychan.mlog.presentation.main.search.SearchMovieItem
 import javax.inject.Inject
 
@@ -34,7 +35,7 @@ class MovieRepository @Inject constructor(
         ).build()
     }
 
-    fun getMovieAll(): LiveData<PagedList<SearchMovieItem>> {
+    fun getMovieAll(): LiveData<PagedList<MyMovieItem>> {
         return LivePagedListBuilder(
             movieDataSource.getMovieAll().map {
                 it.toMovieItem()

@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kychan.mlog.R
 import com.kychan.mlog.databinding.DialogMovieBinding
 import com.kychan.mlog.ext.setImage
-import com.kychan.mlog.presentation.main.search.SearchMovieItem
+import com.kychan.mlog.presentation.main.mypage.MyMovieItem
 
 class MovieDialog : BottomSheetDialogFragment() {
 
@@ -38,7 +38,7 @@ class MovieDialog : BottomSheetDialogFragment() {
 
     private fun setupView() {
         with(binding) {
-            val movieItem = arguments?.getSerializable(KEY_MOVIE_ITEM) as SearchMovieItem
+            val movieItem = arguments?.getSerializable(KEY_MOVIE_ITEM) as MyMovieItem
 
             movieImage.setImage(movieItem.image)
             title.text = movieItem.title
@@ -50,7 +50,7 @@ class MovieDialog : BottomSheetDialogFragment() {
             movieInputRating.setOnRatingBarChangeListener { _, rating, _ ->
                 setFragmentResult(
                     this@MovieDialog::class.java.simpleName,
-                    bundleOf(RESULT_RATING to rating * 2)
+                    bundleOf(RESULT_RATING to rating)
                 )
                 dismiss()
             }
@@ -69,10 +69,10 @@ class MovieDialog : BottomSheetDialogFragment() {
         const val RESULT_DELETE = "result_delete"
         const val RESULT_RATING = "result_rating"
         private const val KEY_MOVIE_ITEM = "MOVIE_ITEM"
-        fun newInstance(searchMovieItem: SearchMovieItem) =
+        fun newInstance(movieItem: MyMovieItem) =
             MovieDialog().apply {
                 arguments = Bundle().apply {
-                    putSerializable(KEY_MOVIE_ITEM, searchMovieItem)
+                    putSerializable(KEY_MOVIE_ITEM, movieItem)
                 }
             }
     }

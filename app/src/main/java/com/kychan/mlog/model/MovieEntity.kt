@@ -16,8 +16,8 @@ data class MovieEntity(
     @ColumnInfo(name = "actor") val actor: String,
     @ColumnInfo(name = "userRating") val userRating: Float
 ) {
-    fun toMovieItem(): SearchMovieItem =
-        SearchMovieItem(
+    fun toMovieItem(): MyMovieItem =
+        MyMovieItem(
             link = link,
             title = title,
             image = image,

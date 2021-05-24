@@ -66,8 +66,8 @@ class MyMovieFragment : Fragment() {
         }
     }
 
-    private fun showEvaluationMovieDialog(searchMovieItem: SearchMovieItem) {
-        val dialog = MovieDialog.newInstance(searchMovieItem)
+    private fun showEvaluationMovieDialog(movieItem: MyMovieItem) {
+        val dialog = MovieDialog.newInstance(movieItem)
 
         dialog.show(childFragmentManager, dialog::class.java.simpleName)
 
@@ -76,10 +76,10 @@ class MyMovieFragment : Fragment() {
             val ratingResult = bundle.get(MovieDialog.RESULT_RATING)
 
             if (deleteResult == Activity.RESULT_OK) {
-                myMovieViewModel.deleteMovie(searchMovieItem.link)
+                myMovieViewModel.deleteMovie(movieItem.link)
             }
             if (ratingResult != null){
-                myMovieViewModel.updateMovie(ratingResult as Float, searchMovieItem.link)
+                myMovieViewModel.updateMovie(ratingResult as Float, movieItem.link)
             }
         }
     }

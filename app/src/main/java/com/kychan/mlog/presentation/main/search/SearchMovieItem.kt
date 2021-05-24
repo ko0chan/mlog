@@ -12,4 +12,4 @@ data class SearchMovieItem(
     val pubDate: String,
     val userRating: Float,
     var isMyMovie: Boolean
-): Serializable
+)
