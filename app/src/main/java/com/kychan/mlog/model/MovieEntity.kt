@@ -3,6 +3,7 @@ package com.kychan.mlog.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.kychan.mlog.presentation.main.mypage.MyMovieItem
 import com.kychan.mlog.presentation.main.search.SearchMovieItem
 
 @Entity(tableName = "movie_table")
@@ -10,11 +11,12 @@ data class MovieEntity(
     @PrimaryKey @ColumnInfo(name = "link") val link: String,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "image") val image: String,
-    @ColumnInfo(name = "subTitle") val subTitle: String,
-    @ColumnInfo(name = "pubDate") val pubDate: String,
+    @ColumnInfo(name = "sub_title") val subTitle: String,
+    @ColumnInfo(name = "pub_date") val pubDate: String,
     @ColumnInfo(name = "director") val director: String,
     @ColumnInfo(name = "actor") val actor: String,
-    @ColumnInfo(name = "userRating") val userRating: Float
+    @ColumnInfo(name = "user_rating") val userRating: Float,
+    @ColumnInfo(name = "evaluation") val evaluation: Float
 ) {
     fun toMovieItem(): MyMovieItem =
         MyMovieItem(
@@ -26,6 +28,7 @@ data class MovieEntity(
             director = director,
             actor = actor,
             userRating = userRating,
+            evaluation = evaluation,
             isMyMovie = true
         )
 
@@ -39,7 +42,8 @@ data class MovieEntity(
                 pubDate = movieItem.pubDate,
                 director = movieItem.director,
                 actor = movieItem.actor,
-                userRating = movieItem.userRating
+                userRating = movieItem.userRating,
+                evaluation = 0f
             )
         }
     }

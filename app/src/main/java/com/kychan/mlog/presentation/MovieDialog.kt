@@ -46,6 +46,7 @@ class MovieDialog : BottomSheetDialogFragment() {
             actor.text = movieItem.actor
             pubDate.text = movieItem.pubDate
             userRating.text = movieItem.userRating.toString()
+            movieInputRating.rating = movieItem.evaluation
 
             movieInputRating.setOnRatingBarChangeListener { _, rating, _ ->
                 setFragmentResult(

@@ -15,7 +15,6 @@ import com.kychan.mlog.R
 import com.kychan.mlog.databinding.FragmentMyMovieBinding
 import com.kychan.mlog.presentation.MovieDialog
 import com.kychan.mlog.presentation.main.MainActivity
-import com.kychan.mlog.presentation.main.search.SearchMovieItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

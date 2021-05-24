@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.kychan.mlog.data.local.dao.MovieDao
 import com.kychan.mlog.model.MovieEntity
 
-@Database(entities = [MovieEntity::class], version = 1)
+@Database(entities = [MovieEntity::class], version = 2)
 abstract class MovieDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
