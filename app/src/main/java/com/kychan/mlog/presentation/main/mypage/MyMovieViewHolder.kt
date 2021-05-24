@@ -3,6 +3,7 @@ package com.kychan.mlog.presentation.main.mypage
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.kychan.mlog.R
 import com.kychan.mlog.databinding.ItemMyMovieBinding
 import com.kychan.mlog.ext.setImage
 
@@ -20,7 +21,15 @@ class MyMovieViewHolder(
             }
             movieImage.setImage(item.image)
             title.text = item.title
-            evaluationText.text = item.evaluation.toString()
+            evaluationText.run {
+                text = if (item.evaluation == 0f) {
+                    setTextColor(context.getColor(R.color.colorPrimaryDark))
+                    resources.getString(R.string.evaluation_false, "★") + "${item.evaluation}"
+                } else {
+                    setTextColor(context.getColor(R.color.theme_FDA043))
+                    resources.getString(R.string.evaluation_true, "★") + "${item.evaluation}"
+                }
+            }
         }
     }
 }
