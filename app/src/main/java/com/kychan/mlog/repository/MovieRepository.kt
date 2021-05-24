@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.kychan.mlog.data.local.MovieDataSource
+import com.kychan.mlog.data.local.MovieLocalDataSource
 import com.kychan.mlog.factory.SearchMovieDataSourceFactory
 import com.kychan.mlog.model.MovieEntity
 import com.kychan.mlog.presentation.main.mypage.MyMovieItem
@@ -12,7 +12,7 @@ import com.kychan.mlog.presentation.main.search.SearchMovieItem
 import javax.inject.Inject
 
 class MovieRepository @Inject constructor(
-    private val movieDataSource: MovieDataSource,
+    private val movieLocalDataSource: MovieLocalDataSource,
     private val searchMovieDataSourceFactory: SearchMovieDataSourceFactory
 ) {
     fun invalidateDataSource() =
@@ -37,7 +37,7 @@ class MovieRepository @Inject constructor(
 
     fun getMovieAll(): LiveData<PagedList<MyMovieItem>> {
         return LivePagedListBuilder(
-            movieDataSource.getMovieAll().map {
+            movieLocalDataSource.getMovieAll().map {
                 it.toMovieItem()
             },
             SearchMovieDataSourceFactory.pagedListConfig()
@@ -45,10 +45,14 @@ class MovieRepository @Inject constructor(
     }
 
     fun insertMovie(movieEntity: MovieEntity) {
-        movieDataSource.insertMovie(movieEntity)
+        movieLocalDataSource.insertMovie(movieEntity)
     }
 
     fun deleteMovie(link: String) {
-        movieDataSource.deleteMovie(link)
+        movieLocalDataSource.deleteMovie(link)
+    }
+
+    fun updateMovie(evaluation: Float, link: String){
+        movieLocalDataSource.updateMovie(evaluation, link)
     }
 }
