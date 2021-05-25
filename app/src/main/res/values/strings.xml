@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">mlog</string>
+    <string name="app_name">Mlog</string>
 
     <string name="home">홈</string>
     <string name="storage">보관함</string>
@@ -8,4 +8,8 @@
     <string name="hint_search">영화를 검색해 보세요</string>
     <string name="search">검색</string>
     <string name="empty_movie_storage">보관한 영화가 없습니다</string>
+    <string name="evaluation_true">평가함 %s</string>
+    <string name="evaluation_false">평가안함 %s</string>
+    <string name="evaluation">평점 %s</string>
+    <string name="delete_storage">보관함에서 삭제</string>
 </resources>

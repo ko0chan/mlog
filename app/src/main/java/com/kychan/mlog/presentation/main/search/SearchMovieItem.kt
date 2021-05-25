@@ -1,5 +1,7 @@
 package com.kychan.mlog.presentation.main.search
 
+import java.io.Serializable
+
 data class SearchMovieItem(
     val image: String,
     val title: String,

@@ -1,5 +1,6 @@
 package com.kychan.mlog.presentation.main.mypage
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kychan.mlog.R
 import com.kychan.mlog.databinding.FragmentMyMovieBinding
+import com.kychan.mlog.presentation.MovieDialog
 import com.kychan.mlog.presentation.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +24,7 @@ class MyMovieFragment : Fragment() {
     private val myMovieViewModel by viewModels<MyMovieViewModel>()
     private val myMovieAdapter by lazy {
         MyMovieAdapter {
-            myMovieViewModel.deleteMovie(it.link)
+            showEvaluationMovieDialog(it)
         }
     }
 
@@ -59,6 +62,24 @@ class MyMovieFragment : Fragment() {
                 myMovieAdapter.submitList(it)
                 binding.emptyView.isVisible = it.isNullOrEmpty()
             })
+        }
+    }
+
+    private fun showEvaluationMovieDialog(movieItem: MyMovieItem) {
+        val dialog = MovieDialog.newInstance(movieItem)
+
+        dialog.show(childFragmentManager, dialog::class.java.simpleName)
+
+        dialog.setFragmentResultListener(dialog::class.java.simpleName) { _: String, bundle: Bundle ->
+            val deleteResult = bundle.get(MovieDialog.RESULT_DELETE)
+            val ratingResult = bundle.get(MovieDialog.RESULT_RATING)
+
+            if (deleteResult == Activity.RESULT_OK) {
+                myMovieViewModel.deleteMovie(movieItem.link)
+            }
+            if (ratingResult != null){
+                myMovieViewModel.updateMovie(ratingResult as Float, movieItem.link)
+            }
         }
     }
 

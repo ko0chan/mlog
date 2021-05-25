@@ -35,13 +35,15 @@ class SearchMovieResponse(
     ) {
         fun toSearchMovieItem(): SearchMovieItem {
             val replaceTitle = title.replace("<b>", "").replace("</b>", "")
+            val replaceDirector = director.replace("|", " ")
+            val replaceActor = actor.replace("|", " ")
             return SearchMovieItem(
                 image = image,
                 title = replaceTitle,
                 link = link,
                 subTitle = subTitle,
-                director = director,
-                actor = actor,
+                director = replaceDirector,
+                actor = replaceActor,
                 pubDate = pubDate,
                 userRating = userRating,
                 isMyMovie = false

@@ -69,6 +69,8 @@
                 android:id="@+id/actor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@+id/director"
@@ -90,6 +92,8 @@
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:progressTint="@color/theme_FEDC6C"
+                android:secondaryProgressTint="@color/theme_FEDC6C"
                 android:stepSize="0.25"
                 app:layout_constraintStart_toStartOf="@+id/pub_date"
                 app:layout_constraintTop_toBottomOf="@+id/pub_date" />
