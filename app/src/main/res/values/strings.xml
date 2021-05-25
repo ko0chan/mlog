@@ -12,4 +12,10 @@
     <string name="evaluation_false">평가안함 %s</string>
     <string name="evaluation">평점 %s</string>
     <string name="delete_storage">보관함에서 삭제</string>
+
+    <string name="later">나중에</string>
+    <string name="update">업데이트</string>
+    <string name="dialog_update_title">업데이트</string>
+    <string name="dialog_update_sub_title">원활한 앱 사용을 위해 업데이트를 진행해 주세요.</string>
+    <string name="termination">종료</string>
 </resources>

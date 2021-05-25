@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -40,13 +39,30 @@ class SplashActivity : AppCompatActivity() {
         remoteConfig.fetchAndActivate()
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val updated = task.result
-                    Log.d(TAG, "Config params updated: $updated")
-                    Toast.makeText(this, "Fetch and activate succeeded", Toast.LENGTH_SHORT).show()
+                    showUpdateDialog()
                 } else {
                     Toast.makeText(this, "Fetch failed", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun showUpdateDialog(){
+        val updateDialog = MaterialAlertDialogBuilder(this)
+            .setTitle(getString(R.string.dialog_update_title))
+            .setMessage(getString(R.string.dialog_update_sub_title))
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.later)) { _, _ ->
+                // Respond to negative button press
+            }
+            .setPositiveButton(getString(R.string.update)) { _, _ ->
+                val intent = Intent(Intent.ACTION_VIEW)
+                    .setData(Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID))
+
+                startActivity(intent)
+            }
+            .create()
+
+        updateDialog.show()
     }
 
     companion object {
