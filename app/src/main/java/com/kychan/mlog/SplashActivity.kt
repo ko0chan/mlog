@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.ktx.Firebase
@@ -12,6 +11,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.kychan.mlog.databinding.ActivitySplashBinding
+import com.kychan.mlog.presentation.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -25,36 +25,42 @@ class SplashActivity : AppCompatActivity() {
 
         remoteConfig = Firebase.remoteConfig
         val configSettings = remoteConfigSettings {
-            minimumFetchIntervalInSeconds = 3600
+            minimumFetchIntervalInSeconds = 0
         }
         remoteConfig.setConfigSettingsAsync(configSettings)
 
         remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
-        fetchWelcome()
+
+        fetchVersion()
     }
 
-    private fun fetchWelcome() {
+    private fun fetchVersion() {
+        val localVersion = BuildConfig.VERSION_NAME
         val remoteAppVersion = remoteConfig.getString(KEY_LATEST_VERSION)
-
         remoteConfig.fetchAndActivate()
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    showUpdateDialog()
+                    if (localVersion == remoteAppVersion) {
+                        startMainActivity()
+                    } else {
+                        showUpdateDialog()
+                    }
                 } else {
-                    Toast.makeText(this, "Fetch failed", Toast.LENGTH_SHORT).show()
+                    startMainActivity()
                 }
             }
     }
 
-    private fun showUpdateDialog(){
+    private fun showUpdateDialog() {
         val updateDialog = MaterialAlertDialogBuilder(this)
             .setTitle(getString(R.string.dialog_update_title))
             .setMessage(getString(R.string.dialog_update_sub_title))
             .setCancelable(false)
             .setNegativeButton(getString(R.string.later)) { _, _ ->
-                // Respond to negative button press
+                startMainActivity()
             }
             .setPositiveButton(getString(R.string.update)) { _, _ ->
+                startMainActivity()
                 val intent = Intent(Intent.ACTION_VIEW)
                     .setData(Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID))
 
@@ -63,6 +69,11 @@ class SplashActivity : AppCompatActivity() {
             .create()
 
         updateDialog.show()
+    }
+
+    private fun startMainActivity() {
+        startActivity(MainActivity.getIntent(this))
+        finish()
     }
 
     companion object {
