@@ -52,6 +52,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
+                android:ellipsize="end"
+                android:lines="1"
                 app:layout_constraintStart_toStartOf="@+id/director"
                 app:layout_constraintTop_toBottomOf="@+id/director"
                 tools:text="출연:  마츠시게 유타카" />
