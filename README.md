@@ -1,9 +1,9 @@
-<!-- 
+
 **Link**
-- Github: [https://github.com/ko0chan/mlog](https://github.com/ko0chan/mlog) -->
+- Playstore: [https://play.google.com/store/apps/details?id=com.kychan.mlog](https://play.google.com/store/apps/details?id=com.kychan.mlog)
 
 # Mlog
-<!-- <img src="android/ForEarthForUs/image/logo_image.png" width="80"> -->
+<img src="https://user-images.githubusercontent.com/58040559/119822414-97bbcc00-bf2e-11eb-929f-199e8822041b.png" width="80">
 
 # OverView
 
