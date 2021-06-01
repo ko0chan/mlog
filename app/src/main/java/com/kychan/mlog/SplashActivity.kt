@@ -1,5 +1,6 @@
 package com.kychan.mlog
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
 
         remoteConfig = Firebase.remoteConfig
         val configSettings = remoteConfigSettings {
-            minimumFetchIntervalInSeconds = 0
+            minimumFetchIntervalInSeconds = if (BuildConfig.DEBUG) 30 else ONE_DAY_SECONDS
         }
         remoteConfig.setConfigSettingsAsync(configSettings)
 
@@ -36,11 +37,11 @@ class SplashActivity : AppCompatActivity() {
 
     private fun fetchVersion() {
         val localVersion = BuildConfig.VERSION_NAME
-        val remoteAppVersion = remoteConfig.getString(KEY_LATEST_VERSION)
         remoteConfig.fetchAndActivate()
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    if (localVersion == remoteAppVersion) {
+                    val remoteAppVersion = remoteConfig.getString(KEY_LATEST_VERSION)
+                    if (localVersion >= remoteAppVersion) {
                         startMainActivity()
                     } else {
                         showUpdateDialog()
@@ -77,7 +78,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val TAG = "SplashActivity"
+        private const val ONE_DAY_SECONDS = 60 * 60 * 24L
 
         private const val KEY_LATEST_VERSION = "latest_version"
     }
