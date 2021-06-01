@@ -1,6 +1,7 @@
 package com.kychan.mlog.presentation.main.search
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
@@ -31,13 +33,15 @@ class SearchFragment : Fragment() {
     private val clearButton: ImageView?
         get() = (activity as MainActivity).supportActionBar?.customView?.findViewById(R.id.clear_button) as? ImageView
     private val searchMovieAdapter by lazy {
-        SearchMovieAdapter {
+        SearchMovieAdapter({
+            startWeb(it.link)
+        }, {
             if (it.isMyMovie) {
                 searchViewModel.deleteMovie(it.link)
             } else {
                 searchViewModel.insertMovie(it)
             }
-        }
+        })
     }
 
     override fun onCreateView(
@@ -107,6 +111,12 @@ class SearchFragment : Fragment() {
                 }
             })
         }
+    }
+
+    private fun startWeb(url: String) {
+        CustomTabsIntent.Builder()
+            .build()
+            .launchUrl(requireContext(), Uri.parse(url))
     }
 
     companion object {

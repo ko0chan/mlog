@@ -12,6 +12,7 @@
     <string name="evaluation_false">평가안함 %s</string>
     <string name="evaluation">평점 %s</string>
     <string name="delete_storage">보관함에서 삭제</string>
+    <string name="learn_more_movie_detail">영화 상세정보 보기</string>
 
     <string name="later">나중에</string>
     <string name="update">업데이트</string>
