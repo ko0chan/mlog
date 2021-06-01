@@ -1,7 +1,16 @@
 package com.kychan.mlog.presentation.main.mypage
 
-data class MyMovieItem (
+import java.io.Serializable
+
+data class MyMovieItem(
     val image: String,
     val title: String,
-    val userRating: Float
-)
+    val link: String,
+    val subTitle: String,
+    val director: String,
+    val actor: String,
+    val pubDate: String,
+    val userRating: Float,
+    val evaluation: Float,
+    var isMyMovie: Boolean
+) : Serializable

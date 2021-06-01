@@ -5,7 +5,7 @@ import com.kychan.mlog.data.local.dao.MovieDao
 import com.kychan.mlog.model.MovieEntity
 import javax.inject.Inject
 
-class MovieDataSource @Inject constructor(
+class MovieLocalDataSource @Inject constructor(
     private val movieDao: MovieDao
 ) {
     fun getMovieAll(): DataSource.Factory<Int, MovieEntity> {
@@ -18,5 +18,9 @@ class MovieDataSource @Inject constructor(
 
     fun deleteMovie(link: String) {
         movieDao.delete(link)
+    }
+
+    fun updateMovie(evaluation: Float, link: String){
+        movieDao.update(evaluation, link)
     }
 }

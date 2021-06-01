@@ -22,14 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/bookmark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_bookmark"
-            app:layout_constraintEnd_toEndOf="@+id/movie_image"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/title"
             android:layout_width="0dp"
@@ -38,21 +30,20 @@
             android:ellipsize="end"
             android:lines="1"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="@+id/movie_image"
             app:layout_constraintStart_toStartOf="@+id/movie_image"
             app:layout_constraintTop_toBottomOf="@id/movie_image"
             tools:text="워킹데드 시즌" />
 
-        <RatingBar
-            android:id="@+id/user_rating"
-            style="@style/Widget.AppCompat.RatingBar.Small"
+        <TextView
+            android:id="@+id/evaluation_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:stepSize="0.5"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@id/title"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="평가함 5.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

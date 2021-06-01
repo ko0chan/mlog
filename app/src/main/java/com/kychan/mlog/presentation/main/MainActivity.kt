@@ -1,5 +1,7 @@
 package com.kychan.mlog.presentation.main
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -119,5 +121,10 @@ class MainActivity : AppCompatActivity() {
                 super.onBackPressed()
             }
         }
+    }
+
+    companion object {
+        fun getIntent(context: Context) =
+            Intent(context, MainActivity::class.java)
     }
 }
