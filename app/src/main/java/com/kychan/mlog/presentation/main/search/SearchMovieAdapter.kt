@@ -4,11 +4,13 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 
-class SearchMovieAdapter(private val itemClick: (SearchMovieItem) -> Unit) :
+class SearchMovieAdapter(
+    private val itemClick: (SearchMovieItem) -> Unit,
+    private val bookmarkClick: (SearchMovieItem) -> Unit) :
     PagedListAdapter<SearchMovieItem, SearchMovieViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchMovieViewHolder =
-        SearchMovieViewHolder(parent, itemClick)
+        SearchMovieViewHolder(parent, itemClick, bookmarkClick)
 
     override fun onBindViewHolder(holder: SearchMovieViewHolder, position: Int) {
         val searchMovieItem: SearchMovieItem? = getItem(position)

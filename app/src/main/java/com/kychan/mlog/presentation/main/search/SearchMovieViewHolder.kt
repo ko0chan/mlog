@@ -10,14 +10,18 @@ import com.kychan.mlog.ext.setImage
 class SearchMovieViewHolder(
     parent: ViewGroup,
     private val itemClick: (SearchMovieItem) -> Unit,
+    private val bookmarkClick: (SearchMovieItem) -> Unit,
     private val binding: ItemMovieBinding =
         ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: SearchMovieItem) {
         with(binding) {
-            bookmark.setOnClickListener {
+            root.setOnClickListener {
                 itemClick(item)
+            }
+            bookmark.setOnClickListener {
+                bookmarkClick(item)
                 item.isMyMovie = !item.isMyMovie
                 setBookmarkImage(item.isMyMovie)
             }
