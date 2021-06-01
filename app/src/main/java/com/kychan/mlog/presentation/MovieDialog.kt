@@ -1,10 +1,12 @@
 package com.kychan.mlog.presentation
 
 import android.app.Activity
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.setFragmentResult
@@ -48,6 +50,10 @@ class MovieDialog : BottomSheetDialogFragment() {
             userRating.text = getString(R.string.evaluation, "★") + "${movieItem.userRating}"
             movieInputRating.rating = movieItem.evaluation
 
+            learnMoreMovieDetail.setOnClickListener {
+                startWeb(movieItem.link)
+            }
+
             movieInputRating.setOnRatingBarChangeListener { _, rating, _ ->
                 setFragmentResult(
                     this@MovieDialog::class.java.simpleName,
@@ -64,6 +70,12 @@ class MovieDialog : BottomSheetDialogFragment() {
                 dismiss()
             }
         }
+    }
+
+    private fun startWeb(url: String) {
+        CustomTabsIntent.Builder()
+            .build()
+            .launchUrl(requireContext(), Uri.parse(url))
     }
 
     companion object {
