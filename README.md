@@ -1,10 +1,7 @@
-
-**Link**
-- Playstore: [https://play.google.com/store/apps/details?id=com.kychan.mlog](https://play.google.com/store/apps/details?id=com.kychan.mlog)
-
 # Mlog
 <img src="https://user-images.githubusercontent.com/58040559/119822414-97bbcc00-bf2e-11eb-929f-199e8822041b.png" width="80">
 
+- [Google Play Store](https://play.google.com/store/apps/details?id=com.kychan.mlog)
 # OverView
 
 Mlog(Movie Log)는 영화를 검색하여 자신이 본 영화를 기록하는 앱 서비스입니다.<br>
@@ -28,16 +25,14 @@ Mlog(Movie Log)는 영화를 검색하여 자신이 본 영화를 기록하는 �
   - ViewModel
   - DataBinding
   - Paging2
-
+  - Room
 
 **Library**
-
-- [Lifecycle(LiveData, ViewModel)](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 - [Retrofit2](https://github.com/square/retrofit)
 - [Glide](https://github.com/bumptech/glide)
 - [Hilt](https://developer.android.com/jetpack/androidx/releases/hilt)
-- [Room](https://developer.android.com/jetpack/androidx/releases/room)
-- [Paging2](https://developer.android.com/jetpack/androidx/releases/paging#version_212_3)
+- NaverMap
+- Firebase Remote Config
 
 <!-- 
 # ToDo
