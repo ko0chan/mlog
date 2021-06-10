@@ -12,6 +12,9 @@ Mlog(Movie Log)는 영화를 검색하여 자신이 본 영화를 기록하는 �
 
 - 개발 기간 : 2021.03 ~ 2021.05
 
+# ScreenShot
+<kbd><img src="https://user-images.githubusercontent.com/58040559/121518133-19315500-ca2b-11eb-9940-624ec30b374b.png" width="200"></kbd> <kbd><img src="https://user-images.githubusercontent.com/58040559/121518150-1df60900-ca2b-11eb-92b7-b703b8779eff.png" width="200"></kbd> <kbd><img src="https://user-images.githubusercontent.com/58040559/121518164-20586300-ca2b-11eb-8789-73528a735001.png" width="200"></kbd>
+
 # About
 
 **Technology Stack**
@@ -33,14 +36,3 @@ Mlog(Movie Log)는 영화를 검색하여 자신이 본 영화를 기록하는 �
 - [Hilt](https://developer.android.com/jetpack/androidx/releases/hilt)
 - NaverMap
 - Firebase Remote Config
-
-<!-- 
-# ToDo
-- 자체적인 알람 기능 구현.
-- 스크랩 통신 기능 수정.
-- 로딩 시 UX를 고려해서 갑자기 뜨는 것 말고 로딩을 위한 작업 필요.
-- 네트워크 상태  -->
-
-
-# WireFrame
-
