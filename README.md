@@ -31,8 +31,7 @@ Mlog(Movie Log)는 영화를 검색하여 자신이 본 영화를 기록하는 �
   - Room
 
 **Library**
-- [Retrofit2](https://github.com/square/retrofit)
-- [Glide](https://github.com/bumptech/glide)
-- [Hilt](https://developer.android.com/jetpack/androidx/releases/hilt)
-- NaverMap
+- Retrofit2
+- Glide
+- Naver Search Movie API
 - Firebase Remote Config
